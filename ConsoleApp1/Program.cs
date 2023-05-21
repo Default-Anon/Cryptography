@@ -18,7 +18,7 @@ namespace ConsoleApp1
             {
                 char symbol = encryptText[i];
                 int index = ALPHABET.IndexOf(symbol);
-                int decryptIndex = (index - key) % ALPHABET.Length;
+                int decryptIndex = index - key;
                 decrypt += ALPHABET[decryptIndex < 0 ? ALPHABET.Length + decryptIndex : decryptIndex];
             }
 
