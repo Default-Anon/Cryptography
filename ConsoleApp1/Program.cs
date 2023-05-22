@@ -12,7 +12,7 @@ namespace ConsoleApp1
     internal class Program
     {
         const string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const string STR = "Let's move further here. We get the values inside the Dictionary.So, let's move further to check out the values the user enters to check whether the matter is inside the Dictionary.Now, here we are, corresponding with the name directly.So,  let's get the words inside the array we want to find and then iterate that array with the Dictionary Key to see the value and return based on the result we get.So, this will get too complex and long a solution for a short statement.So, in all my blogs and articles, I have said to think a little more to make the code optimized and reusable for any other project.So, we can create a function and declare one variable with a loop, and at the runtime of the loop, we initialize it with the value. Confused ...?";
+        const string STR = "Join us at the kickoff of our newest hackathon dedicated to building on Internet Computer.In this event, hackers will find all the necessary info regarding participation in this hackathon: important dates, schedule, workshops, sponsors, prizes, submissions and more!The Launch will be followed by a workshop introducing hackers to the Internet Computer and Azle, hosted by Jordan Last of Demergent Labs.About Demergent Labs Demergent Labs is accelerating the adoption of Web3, the Internet Computer, and sustainable open source. Find out more here.About Internet Computer The Internet Computer is a blockchain that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof canisters, an evolution of smart contracts. Find out more here.About Encode ClubEncode Club is a web3 education community learning and building together through fantastic programmes with the leading protocols in the space. Together we organise programmes like education series, bootcamps, hackathons, accelerators both online and in person. We then help our community get jobs and funding for projects and startups. Find out more on our website and join the Discord!";
 
         static Dictionary<char,uint> getCharsCounter(string encrypted_string)
         {
@@ -31,11 +31,10 @@ namespace ConsoleApp1
         static char[] getArray(Dictionary<char,uint> dictionary)
         {
             char[] array = new char[dictionary.Count];
-            var dict = dictionary.ToList();
-            foreach(var pair in dict)
+            foreach(var pair in dictionary)
             {
                 uint counter = 0;
-                foreach(var pair2 in dict)
+                foreach(var pair2 in dictionary)
                 {
                     if(pair.Value < pair2.Value)
                     {
@@ -50,18 +49,18 @@ namespace ConsoleApp1
         {
             var dictionary = getCharsCounter(encrypt(STR,9));
             var arr = getArray(dictionary);
-            int key = ALPHABET.IndexOf(arr[0]) - ALPHABET.IndexOf('e');
-            Console.WriteLine(decrypt(encrypt(STR, 9), key));
+            int key = ALPHABET.IndexOf(arr[0]) - ALPHABET.IndexOf('e'); // 'e' || 'a' || 'i' || 't' 
+            char[] ss = decrypt(encrypt(STR, 9), key).ToArray<char>();
+            for(int i = 0; i < ss.Length; i++)
+            {
+                if (ss[i] == 'Z')
+                {
+                    ss[i] = ' ';
+                }
+            }
+            Console.Write(ss);
 
         }
-        
-        
-        
-        
-        
-        
-        
-        
         static string decrypt(string encryptText, int key)
         {
             string decrypt = "";
