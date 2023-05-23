@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,15 @@ public class VigenereEncrypt: IEncrypt<string>
         {
             if (g + 1 == key.Length) { g = 0; }
             int offsetModuleIndex = (ALPHABET.IndexOf(input[i]) + ALPHABET.IndexOf(key[g])) % ALPHABET.Length;
-            encrypted_String += ALPHABET[offsetModuleIndex];
+
+            if (offsetModuleIndex < 0)
+            {
+                encrypted_String += ALPHABET[ALPHABET.Length - (offsetModuleIndex) * -1];
+            }
+            else
+            {
+                encrypted_String += ALPHABET[offsetModuleIndex];
+            }
         }
         Console.WriteLine(encrypted_String + '\n');
         return encrypted_String;
@@ -32,9 +41,26 @@ public class VigenereEncrypt: IEncrypt<string>
             int log = ALPHABET.IndexOf(input[i]);
             int log2 = ALPHABET.IndexOf(key[g]);
             int offsetModuleIndex = (ALPHABET.IndexOf(input[i]) - ALPHABET.IndexOf(key[g])) % ALPHABET.Length; // This crap not worked
-            decrypt_String += ALPHABET[offsetModuleIndex];
+            if (offsetModuleIndex < 0)
+            {
+                decrypt_String += ALPHABET[ALPHABET.Length - (offsetModuleIndex) * -1];
+            }
+            else
+            {
+                decrypt_String += ALPHABET[offsetModuleIndex];
+            }
         }
-        Console.WriteLine(decrypt_String);
+        foreach (char c in decrypt_String)
+        {
+            if (c == 'Z')
+            {
+                Console.Write(' ');
+            }
+            else
+            {
+                Console.Write(c);
+            }
+        }
         return decrypt_String;
     }
 }

@@ -8,7 +8,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             VigenereEncrypt vigenere = new VigenereEncrypt();
-            vigenere.decrypt(vigenere.encrypt(s_STR, "Secret"), "Secret");
+            vigenere.decrypt(vigenere.encrypt(s_STR, "callback"), "callback");
             Console.ReadLine();
         }
     }
